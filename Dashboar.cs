@@ -16,5 +16,10 @@ namespace Kasir_TokoBuku
         {
             InitializeComponent();
         }
+        public Dashboar(string username, string nama)
+        {
+            InitializeComponent();
+           
+        }
     }
 }
