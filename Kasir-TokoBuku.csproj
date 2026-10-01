@@ -112,6 +112,7 @@
     <Compile Include="DashboardKasir.Designer.cs">
       <DependentUpon>DashboardKasir.cs</DependentUpon>
     </Compile>
+    <Compile Include="database.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
