@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using .data.mysqldata;
+using MySql.Data.MySqlClient;
 
 namespace Kasir_TokoBuku.Pages
 {
