@@ -32,18 +32,16 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel10 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.labelttlbuku = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel11 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel8 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lbljumlahtrans = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel9 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblttlpnjualan = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel12 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel13 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblrole = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -63,8 +61,7 @@
             // guna2Panel4
             // 
             this.guna2Panel4.BackColor = System.Drawing.Color.LightSlateGray;
-            this.guna2Panel4.Controls.Add(this.guna2HtmlLabel1);
-            this.guna2Panel4.Controls.Add(this.guna2HtmlLabel10);
+            this.guna2Panel4.Controls.Add(this.labelttlbuku);
             this.guna2Panel4.Controls.Add(this.guna2HtmlLabel11);
             this.guna2Panel4.ForeColor = System.Drawing.Color.Blue;
             this.guna2Panel4.Location = new System.Drawing.Point(617, 66);
@@ -72,27 +69,16 @@
             this.guna2Panel4.Size = new System.Drawing.Size(177, 76);
             this.guna2Panel4.TabIndex = 30;
             // 
-            // guna2HtmlLabel1
+            // labelttlbuku
             // 
-            this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.guna2HtmlLabel1.Location = new System.Drawing.Point(50, 24);
-            this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            this.guna2HtmlLabel1.Size = new System.Drawing.Size(75, 27);
-            this.guna2HtmlLabel1.TabIndex = 18;
-            this.guna2HtmlLabel1.Text = "90.000";
-            // 
-            // guna2HtmlLabel10
-            // 
-            this.guna2HtmlLabel10.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel10.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.guna2HtmlLabel10.Location = new System.Drawing.Point(12, 24);
-            this.guna2HtmlLabel10.Name = "guna2HtmlLabel10";
-            this.guna2HtmlLabel10.Size = new System.Drawing.Size(32, 27);
-            this.guna2HtmlLabel10.TabIndex = 17;
-            this.guna2HtmlLabel10.Text = "Rp";
+            this.labelttlbuku.BackColor = System.Drawing.Color.Transparent;
+            this.labelttlbuku.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelttlbuku.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.labelttlbuku.Location = new System.Drawing.Point(12, 24);
+            this.labelttlbuku.Name = "labelttlbuku";
+            this.labelttlbuku.Size = new System.Drawing.Size(11, 27);
+            this.labelttlbuku.TabIndex = 18;
+            this.labelttlbuku.Text = "-";
             // 
             // guna2HtmlLabel11
             // 
@@ -107,8 +93,7 @@
             // guna2Panel3
             // 
             this.guna2Panel3.BackColor = System.Drawing.Color.LightSlateGray;
-            this.guna2Panel3.Controls.Add(this.guna2HtmlLabel3);
-            this.guna2Panel3.Controls.Add(this.guna2HtmlLabel8);
+            this.guna2Panel3.Controls.Add(this.lbljumlahtrans);
             this.guna2Panel3.Controls.Add(this.guna2HtmlLabel9);
             this.guna2Panel3.ForeColor = System.Drawing.Color.Blue;
             this.guna2Panel3.Location = new System.Drawing.Point(434, 66);
@@ -116,27 +101,16 @@
             this.guna2Panel3.Size = new System.Drawing.Size(177, 76);
             this.guna2Panel3.TabIndex = 29;
             // 
-            // guna2HtmlLabel3
+            // lbljumlahtrans
             // 
-            this.guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.guna2HtmlLabel3.Location = new System.Drawing.Point(50, 24);
-            this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            this.guna2HtmlLabel3.Size = new System.Drawing.Size(75, 27);
-            this.guna2HtmlLabel3.TabIndex = 18;
-            this.guna2HtmlLabel3.Text = "90.000";
-            // 
-            // guna2HtmlLabel8
-            // 
-            this.guna2HtmlLabel8.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel8.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.guna2HtmlLabel8.Location = new System.Drawing.Point(12, 24);
-            this.guna2HtmlLabel8.Name = "guna2HtmlLabel8";
-            this.guna2HtmlLabel8.Size = new System.Drawing.Size(32, 27);
-            this.guna2HtmlLabel8.TabIndex = 17;
-            this.guna2HtmlLabel8.Text = "Rp";
+            this.lbljumlahtrans.BackColor = System.Drawing.Color.Transparent;
+            this.lbljumlahtrans.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbljumlahtrans.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbljumlahtrans.Location = new System.Drawing.Point(12, 24);
+            this.lbljumlahtrans.Name = "lbljumlahtrans";
+            this.lbljumlahtrans.Size = new System.Drawing.Size(11, 27);
+            this.lbljumlahtrans.TabIndex = 18;
+            this.lbljumlahtrans.Text = "-";
             // 
             // guna2HtmlLabel9
             // 
@@ -151,7 +125,7 @@
             // guna2Panel2
             // 
             this.guna2Panel2.BackColor = System.Drawing.Color.LightSlateGray;
-            this.guna2Panel2.Controls.Add(this.guna2HtmlLabel2);
+            this.guna2Panel2.Controls.Add(this.lblttlpnjualan);
             this.guna2Panel2.Controls.Add(this.guna2HtmlLabel12);
             this.guna2Panel2.Controls.Add(this.guna2HtmlLabel13);
             this.guna2Panel2.ForeColor = System.Drawing.Color.Blue;
@@ -160,16 +134,16 @@
             this.guna2Panel2.Size = new System.Drawing.Size(177, 76);
             this.guna2Panel2.TabIndex = 28;
             // 
-            // guna2HtmlLabel2
+            // lblttlpnjualan
             // 
-            this.guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.guna2HtmlLabel2.Location = new System.Drawing.Point(50, 24);
-            this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            this.guna2HtmlLabel2.Size = new System.Drawing.Size(75, 27);
-            this.guna2HtmlLabel2.TabIndex = 18;
-            this.guna2HtmlLabel2.Text = "90.000";
+            this.lblttlpnjualan.BackColor = System.Drawing.Color.Transparent;
+            this.lblttlpnjualan.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblttlpnjualan.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblttlpnjualan.Location = new System.Drawing.Point(50, 24);
+            this.lblttlpnjualan.Name = "lblttlpnjualan";
+            this.lblttlpnjualan.Size = new System.Drawing.Size(75, 27);
+            this.lblttlpnjualan.TabIndex = 18;
+            this.lblttlpnjualan.Text = "90.000";
             // 
             // guna2HtmlLabel12
             // 
@@ -192,14 +166,14 @@
             this.guna2HtmlLabel13.TabIndex = 0;
             this.guna2HtmlLabel13.Text = "Total Penjualan";
             // 
-            // guna2HtmlLabel6
+            // lblrole
             // 
-            this.guna2HtmlLabel6.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel6.Location = new System.Drawing.Point(334, 39);
-            this.guna2HtmlLabel6.Name = "guna2HtmlLabel6";
-            this.guna2HtmlLabel6.Size = new System.Drawing.Size(31, 15);
-            this.guna2HtmlLabel6.TabIndex = 27;
-            this.guna2HtmlLabel6.Text = "admin";
+            this.lblrole.BackColor = System.Drawing.Color.Transparent;
+            this.lblrole.Location = new System.Drawing.Point(334, 39);
+            this.lblrole.Name = "lblrole";
+            this.lblrole.Size = new System.Drawing.Size(31, 15);
+            this.lblrole.TabIndex = 27;
+            this.lblrole.Text = "admin";
             // 
             // guna2HtmlLabel5
             // 
@@ -314,7 +288,7 @@
             this.Controls.Add(this.guna2Panel4);
             this.Controls.Add(this.guna2Panel3);
             this.Controls.Add(this.guna2Panel2);
-            this.Controls.Add(this.guna2HtmlLabel6);
+            this.Controls.Add(this.lblrole);
             this.Controls.Add(this.guna2HtmlLabel5);
             this.Controls.Add(this.guna2HtmlLabel4);
             this.Controls.Add(this.chart1);
@@ -339,18 +313,16 @@
         #endregion
 
         private Guna.UI2.WinForms.Guna2Panel guna2Panel4;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel10;
+        private Guna.UI2.WinForms.Guna2HtmlLabel labelttlbuku;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel11;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel8;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lbljumlahtrans;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel9;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblttlpnjualan;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel12;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel13;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel6;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblrole;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel5;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel4;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
