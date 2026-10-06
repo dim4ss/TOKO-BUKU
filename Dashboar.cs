@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Kasir_TokoBuku.Pages;
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,19 +9,107 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Kasir_TokoBuku
 {
+   
     public partial class Dashboar : Form
     {
+        string connectionString = "server=localhost;username=root;password=;database=toko_buku;port=3306;";
+
         public Dashboar()
         {
             InitializeComponent();
+
         }
         public Dashboar(string username, string nama)
         {
             InitializeComponent();
-           
+            TampilkanBukuTerlaris();
+
+        }
+
+        private void TampilkanBukuTerlaris()
+        {
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+
+                    string query = @"
+                SELECT 
+                    b.judul_buku,
+                    SUM(dt.jumlah) AS total_terjual
+                FROM detail_transaksi dt
+                INNER JOIN buku b
+                    ON dt.id_buku = b.id_buku
+                GROUP BY b.id_buku, b.judul_buku
+                ORDER BY total_terjual DESC
+                LIMIT 10";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        using (MySqlDataReader reader =
+                            cmd.ExecuteReader())
+                        {
+                            // INI ADALAH NAMA CHART KAMU
+                            chart1.Series.Clear();
+
+                            Series series =
+                                new Series("Buku Terlaris");
+
+                            series.ChartType =
+                                SeriesChartType.Column;
+
+                            series.IsValueShownAsLabel = true;
+
+                            while (reader.Read())
+                            {
+                                string judul = reader["judul_buku"].ToString();
+
+                                int jumlah =
+                                    Convert.ToInt32(
+                                        reader["total_terjual"]);
+
+                                series.Points.AddXY(judul, jumlah);
+                            }
+
+                            chart1.Series.Add(series);
+
+                            chart1.ChartAreas[0]
+                                .AxisX.Title = "Buku";
+
+                            chart1.ChartAreas[0]
+                                .AxisY.Title = "Jumlah Terjual";
+
+                            chart1.ChartAreas[0]
+                                .AxisX.Interval = 1;
+
+                            chart1.ChartAreas[0]
+                                .AxisX.LabelStyle.Angle = -45;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(
+                        "Gagal memuat chart: " + ex.Message,
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                }
+            }
+        }
+
+        private void guna2Button4_Click(object sender, EventArgs e)
+        {
+            TransaksiPenjualan formTransaksi = new TransaksiPenjualan();
+            formTransaksi.Show();
+
+            this.Hide();
         }
     }
 }

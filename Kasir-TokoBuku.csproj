@@ -53,7 +53,7 @@
       <HintPath>packages\K4os.Hash.xxHash.1.0.8\lib\net462\K4os.Hash.xxHash.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data">
-      <HintPath>..\mysql-connector-net-9.0.0\v4.8\MySql.Data.dll</HintPath>
+      <HintPath>..\da_yang_baru\mysql-connector-net-9.0.0\v4.8\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
