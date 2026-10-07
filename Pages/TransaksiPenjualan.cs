@@ -454,6 +454,58 @@ namespace Kasir_TokoBuku.Pages
         {
 
         }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            DashboardKasir pindah = new DashboardKasir();
+            pindah.FormClosed += Pindah_FormClosed;
+            pindah.Show();
+            this.Hide();
+        }
+
+        private void Pindah_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void butms_Click(object sender, EventArgs e)
+        {
+            ManagementStock pindah1 = new ManagementStock();
+            pindah1.FormClosed += Pindah1_FormClosed;
+            pindah1.Show();
+            this.Hide();
+        }
+
+        private void Pindah1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void butmb_Click(object sender, EventArgs e)
+        {
+            ManagementBuku pindah2 = new ManagementBuku();
+            pindah2.FormClosed += Pindah2_FormClosed;
+            pindah2.Show();
+            this.Hide();
+        }
+
+        private void Pindah2_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void butlp_Click(object sender, EventArgs e)
+        {
+            LaporanPenjualan pindah3 = new LaporanPenjualan();
+            pindah3.FormClosed += Pindah3_FormClosed;
+            pindah3.Show();
+            this.Hide();
+        }
+
+        private void Pindah3_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Close();
+        }
     }
     }
 

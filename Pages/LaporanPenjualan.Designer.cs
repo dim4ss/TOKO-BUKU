@@ -43,8 +43,8 @@
             this.guna2HtmlLabel8 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel9 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
+            this.butlp = new Guna.UI2.WinForms.Guna2Button();
+            this.butmb = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -97,9 +97,9 @@
             this.lbltotal.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lbltotal.Location = new System.Drawing.Point(50, 24);
             this.lbltotal.Name = "lbltotal";
-            this.lbltotal.Size = new System.Drawing.Size(75, 27);
+            this.lbltotal.Size = new System.Drawing.Size(11, 27);
             this.lbltotal.TabIndex = 18;
-            this.lbltotal.Text = "90.000";
+            this.lbltotal.Text = "-";
             // 
             // guna2HtmlLabel6
             // 
@@ -159,9 +159,9 @@
             this.lbljumlah.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lbljumlah.Location = new System.Drawing.Point(50, 24);
             this.lbljumlah.Name = "lbljumlah";
-            this.lbljumlah.Size = new System.Drawing.Size(75, 27);
+            this.lbljumlah.Size = new System.Drawing.Size(11, 27);
             this.lbljumlah.TabIndex = 18;
-            this.lbljumlah.Text = "90.000";
+            this.lbljumlah.Text = "-";
             // 
             // guna2HtmlLabel8
             // 
@@ -187,8 +187,8 @@
             // guna2Panel1
             // 
             this.guna2Panel1.BackColor = System.Drawing.Color.DimGray;
-            this.guna2Panel1.Controls.Add(this.guna2Button4);
-            this.guna2Panel1.Controls.Add(this.guna2Button3);
+            this.guna2Panel1.Controls.Add(this.butlp);
+            this.guna2Panel1.Controls.Add(this.butmb);
             this.guna2Panel1.Controls.Add(this.guna2Button2);
             this.guna2Panel1.Controls.Add(this.guna2HtmlLabel1);
             this.guna2Panel1.Controls.Add(this.pictureBox1);
@@ -198,37 +198,39 @@
             this.guna2Panel1.Size = new System.Drawing.Size(202, 458);
             this.guna2Panel1.TabIndex = 20;
             // 
-            // guna2Button4
+            // butlp
             // 
-            this.guna2Button4.BorderRadius = 10;
-            this.guna2Button4.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button4.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button4.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button4.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button4.FillColor = System.Drawing.SystemColors.MenuBar;
-            this.guna2Button4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button4.ForeColor = System.Drawing.Color.Black;
-            this.guna2Button4.Location = new System.Drawing.Point(20, 238);
-            this.guna2Button4.Name = "guna2Button4";
-            this.guna2Button4.Size = new System.Drawing.Size(167, 26);
-            this.guna2Button4.TabIndex = 10;
-            this.guna2Button4.Text = "Laporan Penjualan";
+            this.butlp.BorderRadius = 10;
+            this.butlp.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.butlp.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.butlp.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.butlp.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.butlp.FillColor = System.Drawing.SystemColors.MenuBar;
+            this.butlp.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.butlp.ForeColor = System.Drawing.Color.Black;
+            this.butlp.Location = new System.Drawing.Point(20, 238);
+            this.butlp.Name = "butlp";
+            this.butlp.Size = new System.Drawing.Size(167, 26);
+            this.butlp.TabIndex = 10;
+            this.butlp.Text = "Laporan Penjualan";
+            this.butlp.Click += new System.EventHandler(this.butlp_Click);
             // 
-            // guna2Button3
+            // butmb
             // 
-            this.guna2Button3.BorderRadius = 10;
-            this.guna2Button3.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button3.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button3.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button3.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button3.FillColor = System.Drawing.SystemColors.MenuBar;
-            this.guna2Button3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button3.ForeColor = System.Drawing.Color.Black;
-            this.guna2Button3.Location = new System.Drawing.Point(20, 193);
-            this.guna2Button3.Name = "guna2Button3";
-            this.guna2Button3.Size = new System.Drawing.Size(167, 26);
-            this.guna2Button3.TabIndex = 9;
-            this.guna2Button3.Text = "Management Buku";
+            this.butmb.BorderRadius = 10;
+            this.butmb.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.butmb.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.butmb.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.butmb.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.butmb.FillColor = System.Drawing.SystemColors.MenuBar;
+            this.butmb.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.butmb.ForeColor = System.Drawing.Color.Black;
+            this.butmb.Location = new System.Drawing.Point(20, 193);
+            this.butmb.Name = "butmb";
+            this.butmb.Size = new System.Drawing.Size(167, 26);
+            this.butmb.TabIndex = 9;
+            this.butmb.Text = "Management Buku";
+            this.butmb.Click += new System.EventHandler(this.butmb_Click);
             // 
             // guna2Button2
             // 
@@ -245,6 +247,7 @@
             this.guna2Button2.Size = new System.Drawing.Size(167, 26);
             this.guna2Button2.TabIndex = 8;
             this.guna2Button2.Text = "Transaksi Penjualan";
+            this.guna2Button2.Click += new System.EventHandler(this.guna2Button2_Click);
             // 
             // guna2HtmlLabel1
             // 
@@ -283,6 +286,7 @@
             this.guna2Button1.Size = new System.Drawing.Size(118, 26);
             this.guna2Button1.TabIndex = 0;
             this.guna2Button1.Text = "Dashboard";
+            this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
             // 
             // comboBox1
             // 
@@ -333,8 +337,8 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel8;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel9;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
-        private Guna.UI2.WinForms.Guna2Button guna2Button4;
-        private Guna.UI2.WinForms.Guna2Button guna2Button3;
+        private Guna.UI2.WinForms.Guna2Button butlp;
+        private Guna.UI2.WinForms.Guna2Button butmb;
         private Guna.UI2.WinForms.Guna2Button guna2Button2;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
         private System.Windows.Forms.PictureBox pictureBox1;

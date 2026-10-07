@@ -39,7 +39,6 @@
             this.guna2HtmlLabel9 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.lblttlpnjualan = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel12 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel13 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblrole = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -126,7 +125,6 @@
             // 
             this.guna2Panel2.BackColor = System.Drawing.Color.LightSlateGray;
             this.guna2Panel2.Controls.Add(this.lblttlpnjualan);
-            this.guna2Panel2.Controls.Add(this.guna2HtmlLabel12);
             this.guna2Panel2.Controls.Add(this.guna2HtmlLabel13);
             this.guna2Panel2.ForeColor = System.Drawing.Color.Blue;
             this.guna2Panel2.Location = new System.Drawing.Point(251, 66);
@@ -139,22 +137,11 @@
             this.lblttlpnjualan.BackColor = System.Drawing.Color.Transparent;
             this.lblttlpnjualan.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblttlpnjualan.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblttlpnjualan.Location = new System.Drawing.Point(50, 24);
+            this.lblttlpnjualan.Location = new System.Drawing.Point(12, 24);
             this.lblttlpnjualan.Name = "lblttlpnjualan";
-            this.lblttlpnjualan.Size = new System.Drawing.Size(75, 27);
+            this.lblttlpnjualan.Size = new System.Drawing.Size(11, 27);
             this.lblttlpnjualan.TabIndex = 18;
-            this.lblttlpnjualan.Text = "90.000";
-            // 
-            // guna2HtmlLabel12
-            // 
-            this.guna2HtmlLabel12.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel12.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.guna2HtmlLabel12.Location = new System.Drawing.Point(12, 24);
-            this.guna2HtmlLabel12.Name = "guna2HtmlLabel12";
-            this.guna2HtmlLabel12.Size = new System.Drawing.Size(32, 27);
-            this.guna2HtmlLabel12.TabIndex = 17;
-            this.guna2HtmlLabel12.Text = "Rp";
+            this.lblttlpnjualan.Text = "-";
             // 
             // guna2HtmlLabel13
             // 
@@ -320,7 +307,6 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel9;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblttlpnjualan;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel12;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel13;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblrole;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel5;

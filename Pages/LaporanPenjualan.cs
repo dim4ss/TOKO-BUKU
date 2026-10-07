@@ -85,9 +85,9 @@ namespace Kasir_TokoBuku.Pages
                                         dt.harga
                                     ), 0
                                 ) AS total
-                            FROM detail_transaksi dt
+                            FROM transaction_details dt
 
-                            INNER JOIN transaksi t
+                            INNER JOIN transaction t
                                 ON dt.id_transaksi =
                                    t.id_transaksi
 
@@ -104,9 +104,9 @@ namespace Kasir_TokoBuku.Pages
                                         dt.harga
                                     ), 0
                                 ) AS total
-                            FROM detail_transaksi dt
+                            FROM transaction_details dt
 
-                            INNER JOIN transaksi t
+                            INNER JOIN transactions t
                                 ON dt.id_transaksi =
                                    t.id_transaksi
 
@@ -184,7 +184,7 @@ namespace Kasir_TokoBuku.Pages
                     {
                         query = @"
                             SELECT COUNT(*)
-                            FROM transaksi
+                            FROM transactions
                             WHERE DATE(tanggal)
                                 = @tanggal";
                     }
@@ -192,7 +192,7 @@ namespace Kasir_TokoBuku.Pages
                     {
                         query = @"
                             SELECT COUNT(*)
-                            FROM transaksi
+                            FROM transactions
                             WHERE YEAR(tanggal)
                                 = @tahun
 
@@ -290,15 +290,15 @@ private void TampilkanChartBukuTerlaris()
                     {
                         query = @"
                             SELECT
-                                b.judul_buku,
+                                b.judul,
                                 SUM(dt.jumlah) AS total_terjual
-                            FROM detail_transaksi dt
+                            FROM transaction_details dt
 
-                            INNER JOIN transaksi t
+                            INNER JOIN transactions t
                                 ON dt.id_transaksi =
                                    t.id_transaksi
 
-                            INNER JOIN buku b
+                            INNER JOIN books b
                                 ON dt.id_buku =
                                    b.id_buku
 
@@ -306,7 +306,7 @@ private void TampilkanChartBukuTerlaris()
 
                             GROUP BY
                                 b.id_buku,
-                                b.judul_buku
+                                b.judul
 
                             ORDER BY
                                 total_terjual DESC
@@ -317,15 +317,15 @@ private void TampilkanChartBukuTerlaris()
                     {
                         query = @"
                             SELECT
-                                b.judul_buku,
+                                b.judul,
                                 SUM(dt.jumlah) AS total_terjual
-                            FROM detail_transaksi dt
+                            FROM transaction_details dt
 
-                            INNER JOIN transaksi t
+                            INNER JOIN transactions t
                                 ON dt.id_transaksi =
                                    t.id_transaksi
 
-                            INNER JOIN buku b
+                            INNER JOIN books b
                                 ON dt.id_buku =
                                    b.id_buku
 
@@ -334,7 +334,7 @@ private void TampilkanChartBukuTerlaris()
 
                             GROUP BY
                                 b.id_buku,
-                                b.judul_buku
+                                b.judul
 
                             ORDER BY
                                 total_terjual DESC
@@ -368,7 +368,7 @@ private void TampilkanChartBukuTerlaris()
                             while (reader.Read())
                             {
                                 string judul =
-                                    reader["judul_buku"]
+                                    reader["judul"]
                                     .ToString();
 
                                 int jumlah =
@@ -408,6 +408,53 @@ private void TampilkanChartBukuTerlaris()
         private void LaporanPenjualan_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            Dashboar pindah = new Dashboar();
+            pindah.FormClosed += Pindah_FormClosed;
+            pindah.Show();
+            this.Hide();
+        }
+
+        private void Pindah_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            LaporanPenjualan pindah2 = new LaporanPenjualan();
+            pindah2.FormClosed += Pindah_FormClosed;
+            pindah2.Show();
+            this.Hide();
+        }
+
+        private void butmb_Click(object sender, EventArgs e)
+        {
+            ManagementBuku pindah3 = new ManagementBuku();
+            pindah3.FormClosed += Pindah3_FormClosed;
+            pindah3.Show();
+            this.Hide();
+        }
+
+        private void Pindah3_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void butlp_Click(object sender, EventArgs e)
+        {
+            LaporanPenjualan pindah4 = new LaporanPenjualan();
+            pindah4.FormClosed += Pindah4_FormClosed;
+            pindah4.Show();
+            this.Hide();
+        }
+
+        private void Pindah4_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

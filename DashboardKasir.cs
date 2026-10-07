@@ -44,12 +44,12 @@ namespace Kasir_TokoBuku
 
                     string query = @"
                 SELECT 
-                    b.judul_buku,
+                    judul_buku,
                     SUM(dt.jumlah) AS total_terjual
-                FROM detail_transaksi dt
-                INNER JOIN buku b
-                    ON dt.id_buku = b.id_buku
-                GROUP BY b.id_buku, b.judul_buku
+                FROM transaction_details dt
+                INNER JOIN books 
+                    ON id_buku = id_buku
+                GROUP BY id_buku, judul_buku
                 ORDER BY total_terjual DESC
                 LIMIT 10";
 
