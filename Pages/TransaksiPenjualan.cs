@@ -14,7 +14,7 @@ namespace Kasir_TokoBuku.Pages
 {
     public partial class TransaksiPenjualan : Form
     {
-        string koneksi = "server=localhost;database=kasir_buku;uid=root;pwd=;port=3306;";
+        string connectionString = "server=localhost;database=kasir_buku;uid=root;pwd=;port=3306;";
         string strukId = "";
         string strukJudul = "";
         string strukJumlah = "";
@@ -24,116 +24,201 @@ namespace Kasir_TokoBuku.Pages
         string strukKembalian = "";
         string strukTotal = "";
         string strukBayar = "";
+        private DataTable tabelKeranjang;
 
         MySqlConnection conn;
         public TransaksiPenjualan()
         {
             InitializeComponent();
-            
-            conn = new MySqlConnection(koneksi);
+
+            conn = new MySqlConnection(connectionString);
 
             this.Load += TransaksiPenjualan_Load;
 
-            dataGridView2.CellDoubleClick += dataGridView2_DoubleClick;
+            databuku.CellDoubleClick += dataGridView2_DoubleClick;
 
-            txtjumlah.TextChanged += txtJumlah_TextChanged;
+           
             txtbayar.TextChanged += txtBayar_TextChanged;
-            
-        
+
+
         }
 
         private void TransaksiPenjualan_Load(object sender, EventArgs e)
         {
-            TampilBuku();
+            TampilkanBuku();
+            BuatKeranjang();
+          
+            HitungTotalKeranjang();
 
             txtkembalian.ReadOnly = true;
-            txtsub.ReadOnly = true;
-
             
+
         }
 
-        private void TampilBuku()
+        private void BuatKeranjang()
+        {
+            tabelKeranjang = new DataTable();
+
+            tabelKeranjang.Columns.Add("id_buku", typeof(int));
+            tabelKeranjang.Columns.Add("kode_buku", typeof(string));
+            tabelKeranjang.Columns.Add("judul", typeof(string));
+            tabelKeranjang.Columns.Add("harga", typeof(decimal));
+            tabelKeranjang.Columns.Add("jumlah", typeof(int));
+            tabelKeranjang.Columns.Add("diskon", typeof(decimal));
+            tabelKeranjang.Columns.Add("subtotal", typeof(decimal));
+
+            datakeranjang.DataSource = tabelKeranjang;
+
+            datakeranjang.ReadOnly = true;
+            datakeranjang.AllowUserToAddRows = false;
+            datakeranjang.SelectionMode =
+                DataGridViewSelectionMode.FullRowSelect;
+            datakeranjang.MultiSelect = false;
+            datakeranjang.AutoSizeColumnsMode =
+                DataGridViewAutoSizeColumnsMode.Fill;
+
+            datakeranjang.Columns["id_buku"].Visible = false;
+        }
+
+        private void TampilkanBuku(string kataKunci = "")
         {
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(koneksi))
+                using (MySqlConnection conn =
+                    new MySqlConnection(connectionString))
                 {
                     conn.Open();
 
                     string query = @"
-                SELECT 
-                    id_buku AS 'ID Buku',
-                    judul AS 'Judul',
-                    pengarang AS 'Pengarang',
-                    penerbit AS 'Penerbit',
-                    harga AS 'Harga',
-                    stok AS 'Stok'
+                SELECT
+                    id_buku,
+                    kode_buku,
+                    judul,
+                    pengarang,
+                    penerbit,
+                    harga,
+                    stok,
+                    diskon
                 FROM books
-                ORDER BY id_buku DESC;
-            ";
+                WHERE judul LIKE @cari
+                   OR kode_buku LIKE @cari
+                ORDER BY id_buku DESC";
 
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn);
+                    using (MySqlCommand cmd =
+                        new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue(
+                            "@cari", "%" + kataKunci + "%");
 
-                    DataTable dt = new DataTable();
-
-                    adapter.Fill(dt);
-
-                    dataGridView2.DataSource = dt;
-
-                    dataGridView2.AutoSizeColumnsMode =
-                        DataGridViewAutoSizeColumnsMode.Fill;
+                        using (MySqlDataAdapter adapter =
+                            new MySqlDataAdapter(cmd))
+                        {
+                            DataTable dataBuku = new DataTable();
+                            adapter.Fill(dataBuku);
+                            databuku.DataSource = dataBuku;
+                        }
+                    }
                 }
+
+                databuku.ReadOnly = true;
+                databuku.AllowUserToAddRows = false;
+                databuku.SelectionMode =
+                    DataGridViewSelectionMode.FullRowSelect;
+                databuku.MultiSelect = false;
+                databuku.AutoSizeColumnsMode =
+                    DataGridViewAutoSizeColumnsMode.Fill;
+
+                if (databuku.Columns.Contains("id_buku"))
+                    databuku.Columns["id_buku"].Visible = false;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(
-                    "Gagal mengambil data buku!\n" + ex.Message,
-                    "Error",
+                    "Gagal menampilkan buku: " + ex.Message,
+                    "Kesalahan",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                    MessageBoxIcon.Error);
             }
         }
 
-        private void dataGridView2_DoubleClick(object sender, EventArgs e)
+
+
+        private decimal HitungTotalKeranjang()
         {
-            if (dataGridView2.CurrentRow == null)
+            decimal total = 0;
+
+            foreach (DataRow item in tabelKeranjang.Rows)
+            {
+                total += Convert.ToDecimal(item["subtotal"]);
+            }
+
+            return total;
+        }
+
+
+        private void dataGridView2_DoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
                 return;
 
-            DataGridViewRow row = dataGridView2.CurrentRow;
+            DataGridViewRow baris = databuku.Rows[e.RowIndex];
 
-            txtid.Text = row.Cells["ID Buku"].Value?.ToString();
-            txtjudul.Text = row.Cells["Judul"].Value?.ToString();
-            txtharga.Text = row.Cells["Harga"].Value?.ToString();
+            int idBuku = Convert.ToInt32(baris.Cells["id_buku"].Value);
+            string kodeBuku = Convert.ToString(baris.Cells["kode_buku"].Value);
+            string judul = Convert.ToString(baris.Cells["judul"].Value);
+            decimal harga = Convert.ToDecimal(baris.Cells["harga"].Value);
+            int stok = Convert.ToInt32(baris.Cells["stok"].Value);
 
-            txtjumlah.Text = "1";
+            decimal diskon = 0;
 
-            HitungSubtotal();
-        }
-        private void txtJumlah_TextChanged(object sender, EventArgs e)
-        {
-            HitungSubtotal();
-        }
+            if (baris.Cells["diskon"].Value != DBNull.Value)
+                diskon = Convert.ToDecimal(baris.Cells["diskon"].Value);
 
-        private void HitungSubtotal()
-        {
-            decimal harga;
-            int jumlah;
-
-            if (decimal.TryParse(txtharga.Text, out harga) &&
-                int.TryParse(txtjumlah.Text, out jumlah))
+            if (stok <= 0)
             {
-                decimal subtotal = harga * jumlah;
-
-                txtsub.Text = subtotal.ToString("N0");
-            }
-            else
-            {
-                txtsub.Text = "0";
+                MessageBox.Show("Stok buku habis.");
+                return;
             }
 
+            foreach (DataRow item in tabelKeranjang.Rows)
+            {
+                if (Convert.ToInt32(item["id_buku"]) == idBuku)
+                {
+                    int jumlahBaru = Convert.ToInt32(item["jumlah"]) + 1;
+
+                    if (jumlahBaru > stok)
+                    {
+                        MessageBox.Show("Jumlah melebihi stok tersedia.");
+                        return;
+                    }
+
+                    item["jumlah"] = jumlahBaru;
+                    item["subtotal"] =
+                        harga * jumlahBaru * (100 - diskon) / 100;
+
+                    HitungKembalian();
+                    return;
+                }
+            }
+
+            tabelKeranjang.Rows.Add(
+                idBuku,
+                kodeBuku,
+                judul,
+                harga,
+                1,
+                diskon,
+                harga * (100 - diskon) / 100
+            );
+
+            HitungKembalian();
 
         }
+
+        
+
+
+        
 
         private void txtBayar_TextChanged(object sender, EventArgs e)
         {
@@ -145,17 +230,16 @@ namespace Kasir_TokoBuku.Pages
             HitungKembalian();
         }
 
+
         private void HitungKembalian()
         {
             decimal bayar;
-            decimal total = 0;
 
-            decimal.TryParse(
-                txtsub.Text.Replace(".", ""),
-                out total);
+            // Ambil total dari seluruh buku di keranjang
+            decimal total = HitungTotalKeranjang();
 
             if (decimal.TryParse(
-                txtbayar.Text.Replace(".", ""),
+                txtbayar.Text.Replace(".", "").Replace(",", ""),
                 out bayar))
             {
                 decimal kembalian = bayar - total;
@@ -175,65 +259,53 @@ namespace Kasir_TokoBuku.Pages
             }
         }
 
+
         private void button2_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtid.Text))
+            // Pastikan keranjang tidak kosong
+            if (datakeranjang.Rows.Count == 0)
             {
-                MessageBox.Show(
-                    "Pilih buku terlebih dahulu!",
-                    "Peringatan",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
+                MessageBox.Show("Keranjang masih kosong!");
                 return;
             }
 
-            if (!int.TryParse(txtjumlah.Text, out int jumlah))
-            {
-                MessageBox.Show("Jumlah tidak valid!");
-                return;
-            }
-
+            // Validasi nominal pembayaran
             if (!decimal.TryParse(
-                txtbayar.Text.Replace(".", ""),
+                txtbayar.Text.Replace(".", "").Replace(",", ""),
                 out decimal bayar))
             {
                 MessageBox.Show("Nominal pembayaran tidak valid!");
                 return;
             }
 
-            decimal subtotal =
-                decimal.Parse(txtsub.Text.Replace(".", ""));
+            // Hitung total dari seluruh isi keranjang
+            decimal total = 0;
 
-            decimal diskon = 0;
+            foreach (DataGridViewRow baris in datakeranjang.Rows)
+            {
+                if (baris.IsNewRow)
+                    continue;
 
-            decimal.TryParse(
-                diskon.ToString().Replace(".", ""),
-                out diskon
-            );
+                if (baris.Cells["subtotal"].Value != null)
+                {
+                    total += Convert.ToDecimal(
+                        baris.Cells["subtotal"].Value);
+                }
+            }
 
-            decimal total = subtotal - diskon;
-
-            if (total < 0)
-                total = 0;
-
+            // Validasi uang pembayaran
             if (bayar < total)
             {
-                MessageBox.Show(
-                    "Uang pembayaran kurang!",
-                    "Peringatan",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-
+                MessageBox.Show("Uang pembayaran kurang!");
                 return;
             }
 
+            // Hitung kembalian
             decimal kembalian = bayar - total;
 
             txtkembalian.Text = kembalian.ToString("N0");
 
-           
+
         }
             private void printDocument_PrintPage(object sender, PrintPageEventArgs e)
         {
@@ -505,6 +577,65 @@ namespace Kasir_TokoBuku.Pages
         private void Pindah3_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Close();
+        }
+
+        private void databuku_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            DataGridViewRow baris = databuku.Rows[e.RowIndex];
+
+            int idBuku = Convert.ToInt32(baris.Cells["id_buku"].Value);
+            string kodeBuku = Convert.ToString(baris.Cells["kode_buku"].Value);
+            string judul = Convert.ToString(baris.Cells["judul"].Value);
+            decimal harga = Convert.ToDecimal(baris.Cells["harga"].Value);
+            int stok = Convert.ToInt32(baris.Cells["stok"].Value);
+
+            decimal diskon = 0;
+
+            if (baris.Cells["diskon"].Value != DBNull.Value)
+                diskon = Convert.ToDecimal(baris.Cells["diskon"].Value);
+
+            if (stok <= 0)
+            {
+                MessageBox.Show("Stok buku habis.");
+                return;
+            }
+
+            foreach (DataRow item in tabelKeranjang.Rows)
+            {
+                if (Convert.ToInt32(item["id_buku"]) == idBuku)
+                {
+                    int jumlahBaru = Convert.ToInt32(item["jumlah"]) + 1;
+
+                    if (jumlahBaru > stok)
+                    {
+                        MessageBox.Show("Jumlah melebihi stok tersedia.");
+                        return;
+                    }
+
+                    item["jumlah"] = jumlahBaru;
+                    item["subtotal"] =
+                        harga * jumlahBaru * (100 - diskon) / 100;
+
+                    HitungTotalKeranjang();
+                    return;
+                }
+            }
+
+            tabelKeranjang.Rows.Add(
+                idBuku,
+                kodeBuku,
+                judul,
+                harga,
+                1,
+                diskon,
+                harga * (100 - diskon) / 100
+            );
+
+            HitungTotalKeranjang();
+         
         }
     }
     }

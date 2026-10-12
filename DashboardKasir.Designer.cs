@@ -229,6 +229,7 @@
             this.guna2Button2.Size = new System.Drawing.Size(167, 26);
             this.guna2Button2.TabIndex = 8;
             this.guna2Button2.Text = "Transaksi Penjualan";
+            this.guna2Button2.Click += new System.EventHandler(this.guna2Button2_Click);
             // 
             // guna2HtmlLabel7
             // 

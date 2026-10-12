@@ -134,6 +134,8 @@
             this.txtuser.SelectedText = "";
             this.txtuser.Size = new System.Drawing.Size(235, 36);
             this.txtuser.TabIndex = 13;
+            this.txtuser.Enter += new System.EventHandler(this.txtuser_Enter);
+            this.txtuser.Leave += new System.EventHandler(this.txtuser_Leave);
             // 
             // txtpw
             // 

@@ -30,7 +30,7 @@
         {
             this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.databuku = new System.Windows.Forms.DataGridView();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -38,32 +38,21 @@
             this.button5 = new System.Windows.Forms.Button();
             this.guna2TextBox7 = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            this.butlp = new Guna.UI2.WinForms.Guna2Button();
-            this.butmb = new Guna.UI2.WinForms.Guna2Button();
-            this.butms = new Guna.UI2.WinForms.Guna2Button();
             this.guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.txtjudul = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txtharga = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txtjumlah = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txtsub = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txtid = new Guna.UI2.WinForms.Guna2TextBox();
+            this.datakeranjang = new System.Windows.Forms.DataGridView();
             this.diskon = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel8 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.txtkembalian = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtbayar = new Guna.UI2.WinForms.Guna2TextBox();
-            this.guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.databuku)).BeginInit();
             this.panel1.SuspendLayout();
             this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datakeranjang)).BeginInit();
             this.SuspendLayout();
             // 
             // guna2HtmlLabel2
@@ -84,14 +73,17 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 11;
             // 
-            // dataGridView2
+            // databuku
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(0, 53);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(566, 158);
-            this.dataGridView2.TabIndex = 13;
-            this.dataGridView2.DoubleClick += new System.EventHandler(this.dataGridView2_DoubleClick);
+            this.databuku.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.databuku.Location = new System.Drawing.Point(0, 53);
+            this.databuku.Name = "databuku";
+            this.databuku.Size = new System.Drawing.Size(566, 158);
+            this.databuku.TabIndex = 13;
+            this.databuku.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.databuku_CellDoubleClick);
+            this.databuku.CellDoubleClick +=
+            new System.Windows.Forms.DataGridViewCellEventHandler(
+            this.dataGridView2_DoubleClick);
             // 
             // button2
             // 
@@ -120,7 +112,7 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.panel1.Controls.Add(this.button4);
-            this.panel1.Controls.Add(this.dataGridView2);
+            this.panel1.Controls.Add(this.databuku);
             this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.guna2TextBox7);
             this.panel1.Location = new System.Drawing.Point(222, 224);
@@ -171,9 +163,6 @@
             // guna2Panel1
             // 
             this.guna2Panel1.BackColor = System.Drawing.Color.DimGray;
-            this.guna2Panel1.Controls.Add(this.butlp);
-            this.guna2Panel1.Controls.Add(this.butmb);
-            this.guna2Panel1.Controls.Add(this.butms);
             this.guna2Panel1.Controls.Add(this.guna2HtmlLabel7);
             this.guna2Panel1.Controls.Add(this.pictureBox1);
             this.guna2Panel1.Controls.Add(this.guna2Button1);
@@ -181,57 +170,6 @@
             this.guna2Panel1.Name = "guna2Panel1";
             this.guna2Panel1.Size = new System.Drawing.Size(202, 458);
             this.guna2Panel1.TabIndex = 35;
-            // 
-            // butlp
-            // 
-            this.butlp.BorderRadius = 10;
-            this.butlp.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.butlp.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.butlp.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.butlp.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.butlp.FillColor = System.Drawing.SystemColors.MenuBar;
-            this.butlp.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.butlp.ForeColor = System.Drawing.Color.Black;
-            this.butlp.Location = new System.Drawing.Point(20, 238);
-            this.butlp.Name = "butlp";
-            this.butlp.Size = new System.Drawing.Size(167, 26);
-            this.butlp.TabIndex = 10;
-            this.butlp.Text = "Laporan Penjualan";
-            this.butlp.Click += new System.EventHandler(this.butlp_Click);
-            // 
-            // butmb
-            // 
-            this.butmb.BorderRadius = 10;
-            this.butmb.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.butmb.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.butmb.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.butmb.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.butmb.FillColor = System.Drawing.SystemColors.MenuBar;
-            this.butmb.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.butmb.ForeColor = System.Drawing.Color.Black;
-            this.butmb.Location = new System.Drawing.Point(20, 193);
-            this.butmb.Name = "butmb";
-            this.butmb.Size = new System.Drawing.Size(167, 26);
-            this.butmb.TabIndex = 9;
-            this.butmb.Text = "Management Buku";
-            this.butmb.Click += new System.EventHandler(this.butmb_Click);
-            // 
-            // butms
-            // 
-            this.butms.BorderRadius = 10;
-            this.butms.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.butms.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.butms.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.butms.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.butms.FillColor = System.Drawing.SystemColors.MenuBar;
-            this.butms.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.butms.ForeColor = System.Drawing.Color.Black;
-            this.butms.Location = new System.Drawing.Point(20, 149);
-            this.butms.Name = "butms";
-            this.butms.Size = new System.Drawing.Size(167, 26);
-            this.butms.TabIndex = 8;
-            this.butms.Text = "Management Stock";
-            this.butms.Click += new System.EventHandler(this.butms_Click);
             // 
             // guna2HtmlLabel7
             // 
@@ -274,118 +212,25 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.panel2.Controls.Add(this.txtjudul);
-            this.panel2.Controls.Add(this.txtharga);
-            this.panel2.Controls.Add(this.txtjumlah);
-            this.panel2.Controls.Add(this.txtsub);
-            this.panel2.Controls.Add(this.txtid);
+            this.panel2.Controls.Add(this.datakeranjang);
             this.panel2.Controls.Add(this.diskon);
             this.panel2.Controls.Add(this.guna2HtmlLabel8);
             this.panel2.Controls.Add(this.txtkembalian);
             this.panel2.Controls.Add(this.txtbayar);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.button2);
-            this.panel2.Controls.Add(this.guna2HtmlLabel6);
-            this.panel2.Controls.Add(this.guna2HtmlLabel5);
-            this.panel2.Controls.Add(this.guna2HtmlLabel4);
-            this.panel2.Controls.Add(this.guna2HtmlLabel1);
-            this.panel2.Controls.Add(this.guna2HtmlLabel3);
             this.panel2.Location = new System.Drawing.Point(222, 39);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(566, 167);
             this.panel2.TabIndex = 36;
             // 
-            // txtjudul
+            // datakeranjang
             // 
-            this.txtjudul.Cursor = System.Windows.Forms.Cursors.WaitCursor;
-            this.txtjudul.DefaultText = "";
-            this.txtjudul.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtjudul.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtjudul.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtjudul.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtjudul.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtjudul.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtjudul.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtjudul.Location = new System.Drawing.Point(82, 11);
-            this.txtjudul.Name = "txtjudul";
-            this.txtjudul.PlaceholderText = "";
-            this.txtjudul.SelectedText = "";
-            this.txtjudul.Size = new System.Drawing.Size(171, 25);
-            this.txtjudul.TabIndex = 55;
-            this.txtjudul.UseWaitCursor = true;
-            // 
-            // txtharga
-            // 
-            this.txtharga.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtharga.DefaultText = "";
-            this.txtharga.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtharga.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtharga.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtharga.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtharga.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtharga.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtharga.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtharga.Location = new System.Drawing.Point(82, 42);
-            this.txtharga.Name = "txtharga";
-            this.txtharga.PlaceholderText = "";
-            this.txtharga.SelectedText = "";
-            this.txtharga.Size = new System.Drawing.Size(171, 25);
-            this.txtharga.TabIndex = 54;
-            // 
-            // txtjumlah
-            // 
-            this.txtjumlah.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtjumlah.DefaultText = "";
-            this.txtjumlah.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtjumlah.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtjumlah.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtjumlah.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtjumlah.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtjumlah.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtjumlah.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtjumlah.Location = new System.Drawing.Point(82, 71);
-            this.txtjumlah.Name = "txtjumlah";
-            this.txtjumlah.PlaceholderText = "";
-            this.txtjumlah.SelectedText = "";
-            this.txtjumlah.Size = new System.Drawing.Size(171, 25);
-            this.txtjumlah.TabIndex = 53;
-            // 
-            // txtsub
-            // 
-            this.txtsub.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtsub.DefaultText = "";
-            this.txtsub.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtsub.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtsub.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtsub.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtsub.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtsub.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtsub.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtsub.Location = new System.Drawing.Point(82, 101);
-            this.txtsub.Name = "txtsub";
-            this.txtsub.PlaceholderText = "";
-            this.txtsub.SelectedText = "";
-            this.txtsub.Size = new System.Drawing.Size(171, 25);
-            this.txtsub.TabIndex = 52;
-            // 
-            // txtid
-            // 
-            this.txtid.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtid.DefaultText = "";
-            this.txtid.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtid.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtid.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtid.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtid.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtid.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtid.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtid.Location = new System.Drawing.Point(82, 130);
-            this.txtid.Name = "txtid";
-            this.txtid.PlaceholderText = "";
-            this.txtid.SelectedText = "";
-            this.txtid.Size = new System.Drawing.Size(171, 25);
-            this.txtid.TabIndex = 51;
-            this.txtid.TextChanged += new System.EventHandler(this.guna2TextBox3_TextChanged);
+            this.datakeranjang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.datakeranjang.Location = new System.Drawing.Point(3, 3);
+            this.datakeranjang.Name = "datakeranjang";
+            this.datakeranjang.Size = new System.Drawing.Size(289, 164);
+            this.datakeranjang.TabIndex = 49;
             // 
             // diskon
             // 
@@ -445,61 +290,6 @@
             this.txtbayar.Size = new System.Drawing.Size(196, 36);
             this.txtbayar.TabIndex = 45;
             // 
-            // guna2HtmlLabel6
-            // 
-            this.guna2HtmlLabel6.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.guna2HtmlLabel6.Location = new System.Drawing.Point(10, 126);
-            this.guna2HtmlLabel6.Name = "guna2HtmlLabel6";
-            this.guna2HtmlLabel6.Size = new System.Drawing.Size(61, 22);
-            this.guna2HtmlLabel6.TabIndex = 23;
-            this.guna2HtmlLabel6.Text = "ID Buku";
-            // 
-            // guna2HtmlLabel5
-            // 
-            this.guna2HtmlLabel5.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.guna2HtmlLabel5.Location = new System.Drawing.Point(10, 99);
-            this.guna2HtmlLabel5.Name = "guna2HtmlLabel5";
-            this.guna2HtmlLabel5.Size = new System.Drawing.Size(63, 22);
-            this.guna2HtmlLabel5.TabIndex = 22;
-            this.guna2HtmlLabel5.Text = "Subtotal";
-            // 
-            // guna2HtmlLabel4
-            // 
-            this.guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.guna2HtmlLabel4.Location = new System.Drawing.Point(10, 72);
-            this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
-            this.guna2HtmlLabel4.Size = new System.Drawing.Size(54, 22);
-            this.guna2HtmlLabel4.TabIndex = 21;
-            this.guna2HtmlLabel4.Text = "Jumlah";
-            // 
-            // guna2HtmlLabel1
-            // 
-            this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.guna2HtmlLabel1.Location = new System.Drawing.Point(10, 40);
-            this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            this.guna2HtmlLabel1.Size = new System.Drawing.Size(47, 22);
-            this.guna2HtmlLabel1.TabIndex = 20;
-            this.guna2HtmlLabel1.Text = "Harga";
-            // 
-            // guna2HtmlLabel3
-            // 
-            this.guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.guna2HtmlLabel3.Location = new System.Drawing.Point(10, 11);
-            this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            this.guna2HtmlLabel3.Size = new System.Drawing.Size(41, 22);
-            this.guna2HtmlLabel3.TabIndex = 19;
-            this.guna2HtmlLabel3.Text = "Judul";
-            // 
             // TransaksiPenjualan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -512,13 +302,14 @@
             this.Controls.Add(this.guna2HtmlLabel2);
             this.Name = "TransaksiPenjualan";
             this.Text = "ManagementBuku";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.databuku)).EndInit();
             this.panel1.ResumeLayout(false);
             this.guna2Panel1.ResumeLayout(false);
             this.guna2Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datakeranjang)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -527,14 +318,11 @@
         #endregion
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView databuku;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel1;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
-        private Guna.UI2.WinForms.Guna2Button butlp;
-        private Guna.UI2.WinForms.Guna2Button butmb;
-        private Guna.UI2.WinForms.Guna2Button butms;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel7;
         private System.Windows.Forms.PictureBox pictureBox1;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
@@ -542,19 +330,10 @@
         private System.Windows.Forms.Button button5;
         private Guna.UI2.WinForms.Guna2TextBox guna2TextBox7;
         private System.Windows.Forms.Panel panel2;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel6;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel5;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel4;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
         private Guna.UI2.WinForms.Guna2HtmlLabel diskon;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel8;
         private Guna.UI2.WinForms.Guna2TextBox txtkembalian;
         private Guna.UI2.WinForms.Guna2TextBox txtbayar;
-        private Guna.UI2.WinForms.Guna2TextBox txtjudul;
-        private Guna.UI2.WinForms.Guna2TextBox txtharga;
-        private Guna.UI2.WinForms.Guna2TextBox txtjumlah;
-        private Guna.UI2.WinForms.Guna2TextBox txtsub;
-        private Guna.UI2.WinForms.Guna2TextBox txtid;
+        private System.Windows.Forms.DataGridView datakeranjang;
     }
 }

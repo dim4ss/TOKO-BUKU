@@ -19,8 +19,19 @@ namespace Kasir_TokoBuku
             InitializeComponent();
             txtpw.UseSystemPasswordChar = true;
             cmd.Items.Add("admin");
-            cmd.Items.Add("user");
+            cmd.Items.Add("kasir");
             cmd.SelectedIndex = 1;
+            txtuser.Text = placeholderUsername;
+            txtuser.ForeColor = Color.Gray;
+
+            txtuser.Enter += txtuser_Enter;
+            txtuser.Leave += txtuser_Leave;
+
+            this.Shown += (s, e) =>
+            {
+                txtuser.Focus();
+            };
+
 
 
 
@@ -77,13 +88,13 @@ namespace Kasir_TokoBuku
                                     this.Hide();
                                 }
 
-                                // Jika USER
-                                else if (role.ToLower() == "user")
+                                // Jika KASIR
+                                else if (role.ToLower() == "kasir")
                                 {
-                                    DashboardKasir user =
+                                    DashboardKasir kasir =
                                         new DashboardKasir (username, nama);
 
-                                    user.Show();
+                                    kasir.Show();
                                     this.Hide();
                                 }
 
@@ -119,6 +130,24 @@ namespace Kasir_TokoBuku
         private void label5_Click(object sender, EventArgs e)
         {
 
+        }
+        private string placeholderUsername = "Username";
+        private void txtuser_Enter(object sender, EventArgs e)
+        {
+            if (txtuser.Text == placeholderUsername)
+            {
+                txtuser.Clear();
+                txtuser.ForeColor = Color.Black;
+            }
+        }
+
+        private void txtuser_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtuser.Text))
+            {
+                txtuser.Text = placeholderUsername;
+                txtuser.ForeColor = Color.Gray;
+            }
         }
     }
 }

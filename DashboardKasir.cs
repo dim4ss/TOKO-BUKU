@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Kasir_TokoBuku.Pages;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -111,5 +112,20 @@ namespace Kasir_TokoBuku
                 }
             }
         }
+
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            TransaksiPenjualan pindah3 = new TransaksiPenjualan();
+            pindah3.FormClosed += pindah3_FormClosed;
+            pindah3.Show();
+            this.Hide();
+        }
+
+        private void pindah3_FormClosed(object sender, FormClosedEventArgs e)
+
+        {
+            this.Close();
+        }
     }
+
 }
