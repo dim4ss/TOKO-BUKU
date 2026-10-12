@@ -13,7 +13,7 @@ namespace Kasir_TokoBuku
 {
     public partial class Form1 : Form
     {
-        string konfigurasi = "server=localhost;username=root;password=;database=toko_buku;port=3306;";
+        string konfigurasi = "server=localhost;username=root;password=;database=kasir_buku;port=3306;";
         public Form1()
         {
             InitializeComponent();

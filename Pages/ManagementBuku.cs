@@ -18,7 +18,7 @@ namespace Kasir_TokoBuku.Pages
          "server=localhost;" +
          "username=root;" +
          "password=;" +
-         "database=toko_buku;" +
+         "database=kasir_buku;" +
          "port=3306;";
         public ManagementBuku()
         {
@@ -71,7 +71,7 @@ namespace Kasir_TokoBuku.Pages
                         WHERE kode_buku LIKE @cari
                            OR judul LIKE @cari
                            OR pengarang LIKE @cari
-                        ORDER BY id_buku DESC";
+                        ORDER BY id_buku DESC;";
 
                     using (MySqlCommand cmd =
                         new MySqlCommand(query, conn))
@@ -272,7 +272,7 @@ namespace Kasir_TokoBuku.Pages
                             @penerbit,
                             @harga,
                             @stok
-                        )";
+                        );";
 
                     using (MySqlCommand cmd =
                         new MySqlCommand(query, conn))

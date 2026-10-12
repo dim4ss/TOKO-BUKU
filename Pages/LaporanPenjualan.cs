@@ -16,7 +16,7 @@ namespace Kasir_TokoBuku.Pages
     {
       private static string connectionString =
         "Server=localhost;" +
-        "Database=toko_buku;" +
+        "Database=kasir_buku;" +
         "Uid=root;" +
         "Pwd=;";
 
@@ -28,20 +28,39 @@ namespace Kasir_TokoBuku.Pages
         public LaporanPenjualan()
         {
             InitializeComponent();
+
+            cmbFilter.Items.Clear();
+            cmbFilter.Items.Add("Harian");
+            cmbFilter.Items.Add("Bulanan");
+            cmbFilter.SelectedIndex = 0;
+
+            dtpTanggal.Format = DateTimePickerFormat.Custom;
+            dtpTanggal.CustomFormat = "dd MMMM yyyy";
+
+            btnFilter.Click += BtnFilter_Click ;
+            cmbFilter.SelectedIndexChanged += CmbFilter_SelectedIndexChanged; ;
+
+            //btnDashboard.Click += btnDashboard_Click;
+            //btnTransaksi.Click += btnTransaksi_Click;
+            //btnBuku.Click += btnBuku_Click;
+            //btnStock.Click += btnStock_Click;
+
+        }
+
+        private void BtnFilter_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
             
-            // Tanggal hari ini
-            dateTimePicker1.Value = DateTime.Now;
+        }
 
-            // Tampilkan data
-            TampilkanSemuaData();
-
-            comboBox1.Items.Clear();
-            comboBox1.Items.Add("Harian");
-            comboBox1.Items.Add("Bulanan");
-
-            // Default
-            comboBox1.SelectedIndex = 0;
-
+        private void CmbFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
 
         private void dtpTanggal_ValueChanged(
@@ -63,10 +82,10 @@ namespace Kasir_TokoBuku.Pages
             try
             {
                 string filter =
-                    comboBox1.SelectedItem.ToString();
+                    cmbFilter.SelectedItem.ToString();
 
                 DateTime tanggal =
-                    dateTimePicker1.Value;
+                    dtpTanggal.Value;
 
                 using (MySqlConnection conn =
                     database.GetConnection())
@@ -87,12 +106,12 @@ namespace Kasir_TokoBuku.Pages
                                 ) AS total
                             FROM transaction_details dt
 
-                            INNER JOIN transaction t
+                            INNER JOIN transactions t
                                 ON dt.id_transaksi =
                                    t.id_transaksi
 
                             WHERE DATE(t.tanggal)
-                                = @tanggal";
+                                = @tanggal;";
                     }
                     else
                     {
@@ -114,7 +133,7 @@ namespace Kasir_TokoBuku.Pages
                                 = @tahun
 
                             AND MONTH(t.tanggal)
-                                = @bulan";
+                                = @bulan;";
                     }
 
                     using (MySqlCommand cmd =
@@ -168,10 +187,10 @@ namespace Kasir_TokoBuku.Pages
             try
             {
                 string filter =
-                    comboBox1.SelectedItem.ToString();
+                    cmbFilter.SelectedItem.ToString();
 
                 DateTime tanggal =
-                    dateTimePicker1.Value;
+                    dtpTanggal.Value;
 
                 using (MySqlConnection conn =
                     database.GetConnection())
@@ -274,10 +293,10 @@ private void TampilkanChartBukuTerlaris()
                 series.IsValueShownAsLabel = true;
 
                 string filter =
-                    comboBox1.SelectedItem.ToString();
+                    cmbFilter.SelectedItem.ToString();
 
                 DateTime tanggal =
-                    dateTimePicker1.Value;
+                    dtpTanggal.Value;
 
                 using (MySqlConnection conn =
                     database.GetConnection())
@@ -455,6 +474,11 @@ private void TampilkanChartBukuTerlaris()
         private void Pindah4_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Close();
+        }
+
+        private void btnFilter_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

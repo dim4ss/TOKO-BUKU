@@ -16,7 +16,7 @@ namespace Kasir_TokoBuku
    
     public partial class Dashboar : Form
     {
-        string connectionString = "server=localhost;username=root;password=;database=toko_buku;port=3306;";
+        string connectionString = "server=localhost;username=root;password=;database=kasir_buku;port=3306;";
 
         public Dashboar()
         {
@@ -47,7 +47,7 @@ namespace Kasir_TokoBuku
 
                     // TOTAL BUKU
                     string queryBuku =
-                        "SELECT COUNT(*) FROM books";
+                        "SELECT COUNT(*) FROM books;";
 
                     using (MySqlCommand cmd =
                         new MySqlCommand(queryBuku, conn))
@@ -61,7 +61,7 @@ namespace Kasir_TokoBuku
 
                     // TOTAL TRANSAKSI
                     string queryTransaksi =
-                        "SELECT COUNT(*) FROM transactions";
+                        "SELECT COUNT(*) FROM transactions;";
 
                     using (MySqlCommand cmd =
                         new MySqlCommand(queryTransaksi, conn))
@@ -77,7 +77,7 @@ namespace Kasir_TokoBuku
                     string queryHariIni = @"
                 SELECT COUNT(*)
                 FROM transactions
-                WHERE DATE(tanggal) = CURDATE()";
+                WHERE DATE(tanggal) = CURDATE();";
 
                     using (MySqlCommand cmd =
                         new MySqlCommand(queryHariIni, conn))
@@ -95,7 +95,7 @@ namespace Kasir_TokoBuku
                     string queryPendapatan = @"
                 SELECT COALESCE(SUM(total_harga), 0)
                 FROM transactions
-                WHERE DATE(tanggal) = CURDATE()";
+                WHERE DATE(tanggal) = CURDATE();";
 
                     using (MySqlCommand cmd =
                         new MySqlCommand(queryPendapatan, conn))

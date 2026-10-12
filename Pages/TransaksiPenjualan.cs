@@ -14,7 +14,7 @@ namespace Kasir_TokoBuku.Pages
 {
     public partial class TransaksiPenjualan : Form
     {
-        string koneksi = "server=localhost;database=toko_buku;uid=root;pwd=;port=3306;";
+        string koneksi = "server=localhost;database=kasir_buku;uid=root;pwd=;port=3306;";
         string strukId = "";
         string strukJudul = "";
         string strukJumlah = "";
@@ -69,7 +69,7 @@ namespace Kasir_TokoBuku.Pages
                     harga AS 'Harga',
                     stok AS 'Stok'
                 FROM books
-                ORDER BY id_buku DESC
+                ORDER BY id_buku DESC;
             ";
 
                     MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn);

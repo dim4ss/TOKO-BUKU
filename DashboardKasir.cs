@@ -14,7 +14,7 @@ namespace Kasir_TokoBuku
 {
     public partial class DashboardKasir : Form
     {
-        string connectionString = "server=localhost;username=root;password=;database=toko_buku;port=3306;";
+        string connectionString = "server=localhost;username=root;password=;database=kasir_buku;port=3306;";
         public DashboardKasir()
         {
             InitializeComponent();
@@ -43,15 +43,19 @@ namespace Kasir_TokoBuku
                     conn.Open();
 
                     string query = @"
-                SELECT 
-                    judul_buku,
-                    SUM(dt.jumlah) AS total_terjual
-                FROM transaction_details dt
-                INNER JOIN books 
-                    ON id_buku = id_buku
-                GROUP BY id_buku, judul_buku
-                ORDER BY total_terjual DESC
-                LIMIT 10";
+                SELECT
+                b.id_buku,
+                b.judul,
+                SUM(td.jumlah) AS total_terjual
+            FROM transaction_details AS td
+            INNER JOIN books AS b
+                ON td.id_buku = b.id_buku
+            GROUP BY
+                b.id_buku,
+                b.judul
+            ORDER BY
+                total_terjual DESC
+            LIMIT 10;";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
@@ -71,7 +75,7 @@ namespace Kasir_TokoBuku
 
                             while (reader.Read())
                             {
-                                string judul = reader["judul_buku"].ToString();
+                                string judul = reader["judul"].ToString();
 
                                 int jumlah =
                                     Convert.ToInt32(

@@ -19,7 +19,7 @@ namespace Kasir_TokoBuku.Pages
             {
                 string connectionString =
                     "server=localhost;" +
-                    "database=toko_buku;" +
+                    "database=kasir_buku;" +
                     "uid=root;" +
                     "pwd=;";
 
