@@ -425,7 +425,7 @@ private void TampilkanChartBukuTerlaris()
 
         private void guna2Button2_Click(object sender, EventArgs e)
         {
-            LaporanPenjualan pindah2 = new LaporanPenjualan();
+            TransaksiPenjualan pindah2 = new TransaksiPenjualan();
             pindah2.FormClosed += Pindah_FormClosed;
             pindah2.Show();
             this.Hide();
@@ -446,7 +446,7 @@ private void TampilkanChartBukuTerlaris()
 
         private void butlp_Click(object sender, EventArgs e)
         {
-            LaporanPenjualan pindah4 = new LaporanPenjualan();
+            ManagementStock pindah4 = new ManagementStock();
             pindah4.FormClosed += Pindah4_FormClosed;
             pindah4.Show();
             this.Hide();

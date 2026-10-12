@@ -365,7 +365,7 @@ namespace Kasir_TokoBuku.Pages
 
         private void guna2Button1_Click_1(object sender, EventArgs e)
         {
-            DashboardKasir pindah = new DashboardKasir();
+            Dashboar pindah = new Dashboar();
             pindah.FormClosed += Pindah_FormClosed; 
             pindah.Show();
             this.Hide();
@@ -378,7 +378,7 @@ namespace Kasir_TokoBuku.Pages
 
         private void guna2Button2_Click(object sender, EventArgs e)
         {
-            LaporanPenjualan pindah2 = new LaporanPenjualan();
+            TransaksiPenjualan pindah2 = new TransaksiPenjualan();
             pindah2.FormClosed += Pindah2_FormClosed;
             pindah2.Show();
             this.Hide();

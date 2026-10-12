@@ -17,7 +17,7 @@ namespace Kasir_TokoBuku
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TransaksiPenjualan());
+            Application.Run(new Form1());
         }
     }
 }

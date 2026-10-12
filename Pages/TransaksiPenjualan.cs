@@ -64,7 +64,7 @@ namespace Kasir_TokoBuku.Pages
                 SELECT 
                     id_buku AS 'ID Buku',
                     judul AS 'Judul',
-                    penulis AS 'Penulis',
+                    pengarang AS 'Pengarang',
                     penerbit AS 'Penerbit',
                     harga AS 'Harga',
                     stok AS 'Stok'
@@ -457,7 +457,7 @@ namespace Kasir_TokoBuku.Pages
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            DashboardKasir pindah = new DashboardKasir();
+            Dashboar pindah = new Dashboar();
             pindah.FormClosed += Pindah_FormClosed;
             pindah.Show();
             this.Hide();

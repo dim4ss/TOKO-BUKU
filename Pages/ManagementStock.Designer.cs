@@ -62,9 +62,9 @@
             this.guna2HtmlLabel2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.guna2HtmlLabel2.Location = new System.Drawing.Point(257, 25);
             this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            this.guna2HtmlLabel2.Size = new System.Drawing.Size(244, 33);
+            this.guna2HtmlLabel2.Size = new System.Drawing.Size(252, 33);
             this.guna2HtmlLabel2.TabIndex = 39;
-            this.guna2HtmlLabel2.Text = "Management Buku";
+            this.guna2HtmlLabel2.Text = "Management Stock";
             // 
             // button1
             // 
@@ -105,7 +105,7 @@
             this.butms.Name = "butms";
             this.butms.Size = new System.Drawing.Size(167, 26);
             this.butms.TabIndex = 11;
-            this.butms.Text = "Management Stock";
+            this.butms.Text = "Management Buku";
             this.butms.Click += new System.EventHandler(this.butms_Click);
             // 
             // butlp
