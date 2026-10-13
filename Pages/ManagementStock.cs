@@ -13,22 +13,11 @@ namespace Kasir_TokoBuku.Pages
 {
     public partial class ManagementStock : Form
     {
-        public class Koneksi
-        {
-            public static MySqlConnection GetConnection()
-            {
-                string connectionString =
-                    "server=localhost;" +
-                    "database=kasir_buku;" +
-                    "uid=root;" +
-                    "pwd=;";
-
-                return new MySqlConnection(connectionString);
-            }
-        }
+        private DataTable dataStock;
         public ManagementStock()
         {
             InitializeComponent();
+            string koneksi ="server=localhost;database=kasir_buku;uid=root;pwd=;";
         }
         private void ManagementStock_Load(object sender, EventArgs e)
         {
@@ -39,12 +28,7 @@ namespace Kasir_TokoBuku.Pages
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            dataGridView1.Rows.Add(
-                guna2TextBox1.Text,
-                guna2TextBox2.Text,
-                guna2TextBox4.Text,
-                guna2TextBox5.Text
-            );
+            
         }
 
         private void guna2Button1_Click(object sender, EventArgs e)
@@ -99,5 +83,126 @@ namespace Kasir_TokoBuku.Pages
         {
             this.Close();
         }
+
+        private void ManagementStock_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btncari_Click(object sender, EventArgs e)
+        {
+            string keyword = txtCari.Text.Trim();
+
+            // Sesuaikan nama database dengan database XAMPP kamu
+            string koneksi = "server=localhost;database=kasir_buku;uid=root;pwd=;";
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(koneksi))
+                {
+                    conn.Open();
+
+                    string query = @"
+                SELECT *
+                FROM buku
+                WHERE kode_buku LIKE @cari
+                   OR judul_buku LIKE @cari";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@cari", "%" + keyword + "%");
+
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            adapter.Fill(dt);
+
+                            dataGridView1.DataSource = dt;
+
+                            if (dt.Rows.Count == 0)
+                            {
+                                MessageBox.Show("Buku tidak ditemukan!");
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Pencarian gagal: " + ex.Message);
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            string koneksi =
+       "server=localhost;database=kasir_buku;uid=root;pwd=;";
+
+            string kode = txtcodebuku.Text.Trim();
+            string judul = txtjudulbuku.Text.Trim();
+
+            int jumlahBaru;
+
+            if (kode == "" || judul == "")
+            {
+                MessageBox.Show("Kode dan judul buku wajib diisi!");
+                return;
+            }
+
+            if (!int.TryParse(txtjumlahbukunew.Text, out jumlahBaru)
+                || jumlahBaru <= 0)
+            {
+                MessageBox.Show("Jumlah buku harus berupa angka positif!");
+                return;
+            }
+
+            try
+            {
+                using (MySqlConnection conn =
+                       new MySqlConnection(koneksi))
+                {
+                    conn.Open();
+
+                    string query = @"
+                UPDATE buku
+                SET stok = stok + @jumlah
+                WHERE kode_buku = @kode";
+
+                    using (MySqlCommand cmd =
+                           new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@jumlah", jumlahBaru);
+                        cmd.Parameters.AddWithValue("@kode", kode);
+
+                        int hasil = cmd.ExecuteNonQuery();
+
+                        if (hasil > 0)
+                        {
+                            MessageBox.Show(
+                                "Stock buku berhasil ditambahkan!"
+                            );
+
+                            txtcodebuku.Clear();
+                            txtjudulbuku.Clear();
+                            txtstoksaatini.Clear();
+                            txtjumlahbukunew.Clear();
+                        }
+                        else
+                        {
+                            MessageBox.Show(
+                                "Kode buku tidak ditemukan di database!"
+                            );
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Gagal menambah stock: " + ex.Message
+                );
+            }
+        }
     }
 }
+
