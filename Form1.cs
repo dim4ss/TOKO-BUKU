@@ -18,23 +18,50 @@ namespace Kasir_TokoBuku
         {
             InitializeComponent();
             txtpw.UseSystemPasswordChar = true;
+
+            // ComboBox role hanya untuk tampilan/pilihan pengguna.
+            // Role yang menentukan akses tetap dibaca dari database.
+            cmd.Items.Clear();
             cmd.Items.Add("admin");
             cmd.Items.Add("kasir");
             cmd.SelectedIndex = 1;
+
             txtuser.Text = placeholderUsername;
             txtuser.ForeColor = Color.Gray;
 
-            txtuser.Enter += txtuser_Enter;
-            txtuser.Leave += txtuser_Leave;
+            txtuser.Enter += Txtuser_Enter;
+            txtuser.Leave += Txtuser_Leave;
 
-            this.Shown += (s, e) =>
+            // Login dengan menekan Enter pada password
+            txtpw.KeyDown += (s, e) =>
             {
-                txtuser.Focus();
+                if (e.KeyCode == Keys.Enter)
+                {
+                    e.SuppressKeyPress = true;
+                    button1.PerformClick();
+                }
             };
 
+            Shown += (s, e) => txtuser.Focus();
 
+        }
 
+        private void Txtuser_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtuser.Text))
+            {
+                txtuser.Text = placeholderUsername;
+                txtuser.ForeColor = Color.Gray;
+            }
+        }
 
+        private void Txtuser_Enter(object sender, EventArgs e)
+        {
+            if (txtuser.Text == placeholderUsername)
+            {
+                txtuser.Clear();
+                txtuser.ForeColor = Color.Black;
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -45,17 +72,26 @@ namespace Kasir_TokoBuku
         private void button1_Click(object sender, EventArgs e)
         {
             string username = txtuser.Text.Trim();
-            string password = txtpw.Text.Trim();
+            string password = txtpw.Text;
 
-            if (username == "" || password == "")
+            if (username == placeholderUsername)
+                username = "";
+
+            if (string.IsNullOrWhiteSpace(username) ||
+                string.IsNullOrWhiteSpace(password))
             {
-                MessageBox.Show("Username dan password harus diisi!");
+                MessageBox.Show(
+                    "Username dan password harus diisi.",
+                    "Login",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
                 return;
             }
 
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(konfigurasi))
+                using (MySqlConnection conn =
+                    new MySqlConnection(konfigurasi))
                 {
                     conn.Open();
 
@@ -63,67 +99,84 @@ namespace Kasir_TokoBuku
                         SELECT username, nama, role
                         FROM users
                         WHERE username = @username
-                        AND password = @password
-                        LIMIT 1";
+                          AND password = @password
+                        LIMIT 1;";
 
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    string nama;
+                    string role;
+                    string usernameDatabase;
+
+                    using (MySqlCommand cmdLogin =
+                        new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@username", username);
-                        cmd.Parameters.AddWithValue("@password", password);
+                        cmdLogin.Parameters.AddWithValue(
+                            "@username", username);
 
-                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        cmdLogin.Parameters.AddWithValue(
+                            "@password", password);
+
+                        using (MySqlDataReader reader =
+                            cmdLogin.ExecuteReader())
                         {
-                            if (reader.Read())
-                            {
-                                string nama = reader["nama"].ToString();
-                                string role = reader["role"].ToString();
-
-                                // Jika ADMIN
-                                if (role.ToLower() == "admin")
-                                {
-                                    Dashboar admin=
-                                        new Dashboar (username, nama);
-
-                                    admin.Show();
-                                    this.Hide();
-                                }
-
-                                // Jika KASIR
-                                else if (role.ToLower() == "kasir")
-                                {
-                                    DashboardKasir kasir =
-                                        new DashboardKasir (username, nama);
-
-                                    kasir.Show();
-                                    this.Hide();
-                                }
-
-                                else
-                                {
-                                    MessageBox.Show("Role tidak dikenali!");
-                                }
-                            }
-                            else
+                            if (!reader.Read())
                             {
                                 MessageBox.Show(
-                                    "Username atau password salah!",
+                                    "Username atau password salah.",
                                     "Login Gagal",
                                     MessageBoxButtons.OK,
-                                    MessageBoxIcon.Error
-                                );
+                                    MessageBoxIcon.Error);
+                                return;
                             }
+
+                            usernameDatabase =
+                                reader["username"].ToString();
+
+                            nama = reader["nama"].ToString();
+                            role = reader["role"].ToString()
+                                .Trim().ToLowerInvariant();
                         }
                     }
+
+                    // Role dari database menjadi penentu dashboard.
+                    Form dashboard;
+
+                    if (role == "admin")
+                    {
+                        dashboard = new Dashboar(
+                            usernameDatabase, nama);
+                    }
+                    else if (role == "kasir")
+                    {
+                        dashboard = new DashboardKasir(
+                            usernameDatabase, nama);
+                    }
+                    else
+                    {
+                        MessageBox.Show(
+                            "Role akun tidak dikenali: " + role,
+                            "Login Gagal",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    dashboard.StartPosition =
+                        FormStartPosition.CenterScreen;
+
+                    // Login ditutup ketika dashboard ditutup.
+                    dashboard.FormClosed += (s, args) => this.Close();
+
+                    dashboard.Show();
+                    this.Hide();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(
-                    "Terjadi kesalahan:\n" + ex.Message,
-                    "Error",
+                    "Gagal melakukan login:\n" + ex.Message,
+                    "Kesalahan Database",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                    MessageBoxIcon.Error);
             }
         }
 

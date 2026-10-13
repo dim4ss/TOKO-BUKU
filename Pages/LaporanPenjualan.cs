@@ -49,7 +49,7 @@ namespace Kasir_TokoBuku.Pages
 
         private void BtnFilter_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
 
         protected override void OnLoad(EventArgs e)
