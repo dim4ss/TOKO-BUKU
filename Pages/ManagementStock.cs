@@ -18,6 +18,11 @@ namespace Kasir_TokoBuku.Pages
         {
             InitializeComponent();
             string koneksi ="server=localhost;database=kasir_buku;uid=root;pwd=;";
+
+            txtcodebuku.Clear();
+            txtjudulbuku.Clear();
+            txtjumlahbukunew.Clear();
+            txtstoksaatini.Clear();
         }
         private void ManagementStock_Load(object sender, EventArgs e)
         {
