@@ -26,7 +26,10 @@ namespace Kasir_TokoBuku.Pages
             AturDataGridView();
             LoadDataBuku();
 
+            // Event untuk menyimpan perubahan DataGridView
+            dataGridView1.CellEndEdit += dataGridView1_CellEndEdit;
         }
+        
 
         private void AturDataGridView()
         {
@@ -414,5 +417,164 @@ namespace Kasir_TokoBuku.Pages
         {
             this.Close();
         }
+
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            try
+            {
+                // Ambil ID buku dari baris yang diedit
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+
+                int idBuku = Convert.ToInt32(row.Cells["id_buku"].Value);
+                string judul = Convert.ToString(row.Cells["judul"].Value);
+                string pengarang = Convert.ToString(row.Cells["pengarang"].Value);
+                string penerbit = Convert.ToString(row.Cells["penerbit"].Value);
+
+                decimal harga;
+                int stok;
+
+                if (!decimal.TryParse(
+                    Convert.ToString(row.Cells["harga"].Value), out harga))
+                {
+                    MessageBox.Show("Harga harus berupa angka!");
+                    LoadDataBuku();
+                    return;
+                }
+
+                if (!int.TryParse(
+                    Convert.ToString(row.Cells["stok"].Value), out stok) || stok < 0)
+                {
+                    MessageBox.Show("Stok harus berupa angka dan tidak boleh negatif!");
+                    LoadDataBuku();
+                    return;
+                }
+
+                string query = @"
+            UPDATE books
+            SET judul = @judul,
+                pengarang = @pengarang,
+                penerbit = @penerbit,
+                harga = @harga,
+                stok = @stok
+            WHERE id_buku = @id";
+
+                using (MySqlConnection conn = new MySqlConnection(konfigurasi))
+                {
+                    conn.Open();
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@judul", judul);
+                        cmd.Parameters.AddWithValue("@pengarang", pengarang);
+                        cmd.Parameters.AddWithValue("@penerbit", penerbit);
+                        cmd.Parameters.AddWithValue("@harga", harga);
+                        cmd.Parameters.AddWithValue("@stok", stok);
+                        cmd.Parameters.AddWithValue("@id", idBuku);
+
+                        int hasil = cmd.ExecuteNonQuery();
+
+                        if (hasil > 0)
+                        {
+                            MessageBox.Show(
+                                "Data buku berhasil diperbarui!",
+                                "Berhasil",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+                        }
+                    }
+                }
+
+                LoadDataBuku(txtcari.Text.Trim());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Gagal memperbarui data buku:\n" + ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                LoadDataBuku(txtcari.Text.Trim());
+            }
+        }
+
+        private void btnhps_Click(object sender, EventArgs e)
+        {
+            // Pastikan ada baris yang dipilih
+            if (dataGridView1.CurrentRow == null)
+            {
+                MessageBox.Show("Pilih buku yang ingin dihapus!");
+                return;
+            }
+
+            // Ambil ID buku dari baris terpilih
+            object nilaiID = dataGridView1.CurrentRow.Cells["id_buku"].Value;
+
+            if (nilaiID == null || nilaiID == DBNull.Value)
+            {
+                MessageBox.Show("ID buku tidak ditemukan!");
+                return;
+            }
+
+            int idBuku = Convert.ToInt32(nilaiID);
+
+            // Konfirmasi penghapusan
+            DialogResult konfirmasi = MessageBox.Show(
+                "Apakah kamu yakin ingin menghapus buku ini?",
+                "Konfirmasi Hapus",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (konfirmasi != DialogResult.Yes)
+                return;
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(konfigurasi))
+                {
+                    conn.Open();
+
+                    string query = "DELETE FROM books WHERE id_buku = @id";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", idBuku);
+
+                        int hasil = cmd.ExecuteNonQuery();
+
+                        if (hasil > 0)
+                        {
+                            MessageBox.Show(
+                                "Buku berhasil dihapus dari database!",
+                                "Berhasil",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information
+                            );
+                        }
+                        else
+                        {
+                            MessageBox.Show("Data buku tidak ditemukan.");
+                        }
+                    }
+                }
+
+                // Muat ulang data dari database
+                LoadDataBuku(txtcari.Text.Trim());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Gagal menghapus buku:\n" + ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+        }
     }
 }
+

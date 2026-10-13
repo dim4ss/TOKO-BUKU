@@ -80,10 +80,7 @@
             this.databuku.Name = "databuku";
             this.databuku.Size = new System.Drawing.Size(566, 158);
             this.databuku.TabIndex = 13;
-            this.databuku.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.databuku_CellDoubleClick);
-            this.databuku.CellDoubleClick +=
-            new System.Windows.Forms.DataGridViewCellEventHandler(
-            this.dataGridView2_DoubleClick);
+            this.databuku.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_DoubleClick);
             // 
             // button2
             // 
