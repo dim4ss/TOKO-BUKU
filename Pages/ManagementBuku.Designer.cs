@@ -98,6 +98,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(555, 254);
             this.dataGridView1.TabIndex = 30;
+            this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
             // 
             // txtcoda
             // 
@@ -217,6 +218,7 @@
             this.btnhps.TabIndex = 38;
             this.btnhps.Text = "Hapus Buku";
             this.btnhps.UseVisualStyleBackColor = false;
+            this.btnhps.Click += new System.EventHandler(this.btnhps_Click);
             // 
             // btnupdate
             // 
